@@ -1,16 +1,22 @@
 steps:
-  - label: ":construction_worker: Build"
-    command: echo "Build the rocket"
-    key: build
+  # - label: ":construction_worker: Build"
+  #   command: echo "Build the rocket"
+  #   key: build
 
-  - label: ":white_check_mark: Test"
-    command: echo "Test the rocket"
-    key: test
-    depends_on: build
+  # - label: ":white_check_mark: Test"
+  #   command: echo "Test the rocket"
+  #   key: test
+  #   depends_on: build
 
-  - label: ":rocket: Deploy"
+  # - label: ":rocket: Deploy"
+  #   command: |
+  #     echo "Launch the rocket"
+  #     cat .buildkite/annotation.md | buildkite-agent annotate --style "success"
+  #   key: deploy
+  #   depends_on: test
+
+  - label: "Test variable declaration"
+    env: 
+      VAR: testing-env-variable
     command: |
-      echo "Launch the rocket"
-      cat .buildkite/annotation.md | buildkite-agent annotate --style "success"
-    key: deploy
-    depends_on: test
+      make my_target
